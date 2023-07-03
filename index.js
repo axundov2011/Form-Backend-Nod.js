@@ -1,3 +1,7 @@
+
+import 'dotenv/config'
+
+
 import express from "express";
 import multer from "multer";
 import mongoose from "mongoose";
@@ -14,7 +18,9 @@ import {handleValidationErrors, CheckAuth} from "./utils/index.js";
 
 import  {UserController, PostController} from "./Controllers/index.js";
 
-
+console.log('process.env.MONGODB_URI');
+console.log(process.env.MONGODB_URI);
+console.log('process.env.MONGODB_URI');
 mongoose
   .connect(
    process.env.MONGODB_URI
