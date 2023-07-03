@@ -17,7 +17,7 @@ import  {UserController, PostController} from "./Controllers/index.js";
 
 mongoose
   .connect(
-    "mongodb+srv://ayxanbaku:marwel12345678@cluster0.dohbdyo.mongodb.net/blog?retryWrites=true&w=majority"
+   process.env.MONGODB_URI
   )
   .then(() => console.log("DB ok"))
   .catch((err) => console.log("DB error", err));
@@ -78,7 +78,7 @@ app.post("/posts", CheckAuth, postCreateValidation, PostController.create);
 app.delete("/posts/:id", CheckAuth, PostController.remove);
 app.patch("/posts/:id", CheckAuth, postCreateValidation, handleValidationErrors, PostController.update);
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log(err);
   }
