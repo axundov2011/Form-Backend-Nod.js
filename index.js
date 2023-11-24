@@ -30,6 +30,27 @@ mongoose
 
 const app = express();
 
+// dinamic img data 
+//dinamik img api 
+app.use("/images", express.static('photos', {
+  setHeaders: (res, path) => {
+        // Burada her resim için başlık ekleyebilirsin
+    const imageName = path.split('/').pop(); //Resmin adını al
+    const imageTitle = getImageTitle(imageName); // Basligi al
+    res.setHeader('123 That RoadBournemouth', `inline: filname = "${imageTitle}"`);
+  },
+}));
+
+function getImageTitle  (imageName) {
+  return imageName;
+}
+
+app.use(cors({
+  origin: 'http://localhost:4444'
+}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb',
+extended:true, parameterLimit: 100000 }))
 
 ////////////////////////////////////////////////////////////////////
 // Burada biz butun sekil ve fayllari saxlayacagiq
